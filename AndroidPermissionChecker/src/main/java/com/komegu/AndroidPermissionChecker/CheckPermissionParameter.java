@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
 /**
  * Created by kouichi on 15/11/13.
  */
-public class CheckParameter
+public class CheckPermissionParameter
 {
     @NonNull public Activity mActivity;
     @NonNull public String mPermissionName;
     public boolean mIsPermissionRequest;
     public int mPermissionRequestCode;
-    @NonNull public String mPermissionRequestNoticeTitle;
-    @NonNull public String mPermissionRequestNoticeMessage;
+    @NonNull public String mPermissionRequestDescriptionTitle;
+    @NonNull public String mPermissionRequestDescriptionMessage;
 
     public static class Builder
     {
@@ -21,8 +21,8 @@ public class CheckParameter
         private String mPermissionName;
         private boolean mIsPermissionRequest;
         private int mPermissionRequestCode;
-        private String mPermissionRequestNoticeTitle;
-        private String mPermissionRequestNoticeMessage;
+        private String mPermissionRequestDescriptionTitle;
+        private String mPermissionRequestDescriptionMessage;
 
         public Builder(@NonNull Activity activity, @NonNull String permissionName)
         {
@@ -42,31 +42,31 @@ public class CheckParameter
             return this;
         }
 
-        public Builder permissionRequestNoticeTitle(@NonNull String value)
+        public Builder permissionRequestDescriptionTitle(@NonNull String value)
         {
-            this.mPermissionRequestNoticeTitle = value;
+            this.mPermissionRequestDescriptionTitle = value;
             return this;
         }
 
-        public Builder permissionRequestNoticeMessage(@NonNull String value)
+        public Builder permissionRequestDescriptionMessage(@NonNull String value)
         {
-            this.mPermissionRequestNoticeMessage = value;
+            this.mPermissionRequestDescriptionMessage = value;
             return this;
         }
 
-        public CheckParameter build()
+        public CheckPermissionParameter build()
         {
-            return new CheckParameter(this);
+            return new CheckPermissionParameter(this);
         }
     }
 
-    public CheckParameter(Builder builder)
+    public CheckPermissionParameter(Builder builder)
     {
         this.mActivity = builder.mActivity;
         this.mPermissionName = builder.mPermissionName;
         this.mIsPermissionRequest = builder.mIsPermissionRequest;
         this.mPermissionRequestCode = builder.mPermissionRequestCode;
-        this.mPermissionRequestNoticeTitle = builder.mPermissionRequestNoticeTitle;
-        this.mPermissionRequestNoticeMessage = builder.mPermissionRequestNoticeMessage;
+        this.mPermissionRequestDescriptionTitle = builder.mPermissionRequestDescriptionTitle;
+        this.mPermissionRequestDescriptionMessage = builder.mPermissionRequestDescriptionMessage;
     }
 }

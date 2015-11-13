@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.komegu.AndroidPermissionChecker.CheckParameter;
+import com.komegu.AndroidPermissionChecker.CheckPermissionParameter;
+import com.komegu.AndroidPermissionChecker.CheckPermissionRequestResultParameter;
 import com.komegu.AndroidPermissionChecker.Checker;
 
 public class MainActivity extends Activity {
@@ -17,11 +18,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CheckParameter cp = new CheckParameter.Builder(this, Manifest.permission.CAMERA)
+        CheckPermissionParameter cp = new CheckPermissionParameter.Builder(this, Manifest.permission.CAMERA)
                 .isPermissionRequest(true)
                 .permissionRequestCode(0)
-                .permissionRequestNoticeMessage("test message")
-                .permissionRequestNoticeTitle("test title")
+                .permissionRequestDescriptionTitle("permissionRequestDescriptionTitle")
+                .permissionRequestDescriptionMessage("permissionRequestDescriptionMessage")
                 .build();
         Checker.checkPermission(cp);
     }
@@ -54,7 +55,17 @@ public class MainActivity extends Activity {
             String[] permissions,
             int[] grantResults)
     {
-
+        CheckPermissionRequestResultParameter cprrp = new CheckPermissionRequestResultParameter.Builder(
+                this,
+                Manifest.permission.CAMERA)
+                .isPermissionRequest(true)
+                .permissionRequestCode(0)
+                .permissionReRequestTitle("permissionReRequestTitle")
+                .permissionReRequestMessage("permissionReRequestMessage")
+                .doNotAllowTheFutureDescriptionTitle("doNotAllowTheFutureDescriptionTitle")
+                .doNotAllowTheFutureDescriptionMessage("doNotAllowTheFutureDescriptionMessage")
+                .build();
+        Checker.checkPermissionRequestResult(requestCode, grantResults, cprrp);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
