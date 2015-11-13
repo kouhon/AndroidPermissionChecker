@@ -15,14 +15,35 @@ import android.net.Uri;
  */
 public class Checker
 {
+    /**
+     * パーミッション許可リクエスト結果
+     */
     public enum PermissionRequestResult
     {
+        /**
+         * リクエストコードがマッチしない
+         */
         UN_MATCH_REQUEST_CODE,
+        /**
+         * 結果数が一つではない
+         */
         GRANT_RESULTS_CNT_NOT_ONE,
+        /**
+         * 付与された
+         */
         PERMISSION_GRANTED,
+        /**
+         * 拒否された
+         */
         PERMISSION_DENIED
     }
 
+    /**
+     * パーミッションをチェックする
+     * パーミッションが付与されていなかった際はパーミッション許可リクエストを行う
+     * @param cpp パラメータオブジェクト
+     * @return true:パーミッションは付与されている false:パーミッションは付与されていない
+     */
     public static boolean checkPermission(@NonNull final CheckPermissionParameter cpp)
     {
         int result = PermissionChecker.checkSelfPermission(
@@ -66,6 +87,15 @@ public class Checker
         return false;
     }
 
+    /**
+     * パーミッションリクエスト結果をチェックする
+     * パーミッションが付与されていなかった際はパーミッション許可再リクエストを行う
+     * パーミッション付与を今後許可しない状態になった際はメッセージを表示し、設定画面へ遷移させる
+     * @param requestCode リクエストコード
+     * @param grantResults リクエスト結果
+     * @param cprrp パラメータオブジェクト
+     * @return
+     */
     public static PermissionRequestResult checkPermissionRequestResult(
             int requestCode,
             @NonNull int[] grantResults,
@@ -83,7 +113,7 @@ public class Checker
         {
             return PermissionRequestResult.PERMISSION_GRANTED;
         }
-        if(cprrp.mIsPermissionRequest == false)
+        if(cprrp.mIsPermissionReRequest == false)
         {
             return PermissionRequestResult.PERMISSION_DENIED;
         }

@@ -8,20 +8,45 @@ import android.support.annotation.NonNull;
  */
 public class CheckPermissionRequestResultParameter
 {
+    /**
+     * Activity
+     */
     @NonNull public Activity mActivity;
+    /**
+     * チェックするパーミッション名
+     */
     @NonNull public String mPermissionName;
-    public boolean mIsPermissionRequest;
+    /**
+     * パーミッション許可に失敗した際に再リクエストするかどうか
+     * true:再リクエストする false:再リクエストしない
+     */
+    public boolean mIsPermissionReRequest;
+    /**
+     * パーミッションリクエストコード
+     */
     public int mPermissionRequestCode;
+    /**
+     * パーミッション再リクエストする際の説明タイトル
+     */
     @NonNull public String mPermissionReRequestTitle;
+    /**
+     * パーミッション再リクエストする際の説明
+     */
     @NonNull public String mPermissionReRequestMessage;
+    /**
+     * 今後許可しない状態になった際の説明タイトル
+     */
     @NonNull public String mDoNotAllowTheFutureDescriptionTitle;
+    /**
+     * 今後許可しない状態になった際の説明
+     */
     @NonNull public String mDoNotAllowTheFutureDescriptionMessage;
 
     public static class Builder
     {
         private Activity mActivity;
         private String mPermissionName;
-        private boolean mIsPermissionRequest;
+        private boolean mIsPermissionReRequest;
         private int mPermissionRequestCode;
         private String mPermissionReRequestTitle;
         private String mPermissionReRequestMessage;
@@ -34,9 +59,9 @@ public class CheckPermissionRequestResultParameter
             this.mPermissionName = permissionName;
         }
 
-        public Builder isPermissionRequest(boolean value)
+        public Builder isPermissionReRequest(boolean value)
         {
-            this.mIsPermissionRequest = value;
+            this.mIsPermissionReRequest = value;
             return this;
         }
 
@@ -80,7 +105,7 @@ public class CheckPermissionRequestResultParameter
     {
         this.mActivity = builder.mActivity;
         this.mPermissionName = builder.mPermissionName;
-        this.mIsPermissionRequest = builder.mIsPermissionRequest;
+        this.mIsPermissionReRequest = builder.mIsPermissionReRequest;
         this.mPermissionRequestCode = builder.mPermissionRequestCode;
         this.mPermissionReRequestTitle = builder.mPermissionReRequestTitle;
         this.mPermissionReRequestMessage = builder.mPermissionReRequestMessage;

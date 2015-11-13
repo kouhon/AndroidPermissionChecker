@@ -8,11 +8,30 @@ import android.support.annotation.NonNull;
  */
 public class CheckPermissionParameter
 {
+    /**
+     * Activity
+     */
     @NonNull public Activity mActivity;
+    /**
+     * チェックするパーミッションの名前
+     */
     @NonNull public String mPermissionName;
+    /**
+     * パーミッションが付与されていなかった場合にリクエストするかどうか
+     * true:リクエストする false:リクエストしない
+     */
     public boolean mIsPermissionRequest;
+    /**
+     * パーミッションリクエストコード
+     */
     public int mPermissionRequestCode;
+    /**
+     * パーミッション許可リクエストする際の説明タイトル
+     */
     @NonNull public String mPermissionRequestDescriptionTitle;
+    /**
+     * パーミッション許可リクエストする際の説明
+     */
     @NonNull public String mPermissionRequestDescriptionMessage;
 
     public static class Builder

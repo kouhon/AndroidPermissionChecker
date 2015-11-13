@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         CheckPermissionRequestResultParameter cprrp = new CheckPermissionRequestResultParameter.Builder(
                 this,
                 Manifest.permission.CAMERA)
-                .isPermissionRequest(true)
+                .isPermissionReRequest(true)
                 .permissionRequestCode(0)
                 .permissionReRequestTitle("permissionReRequestTitle")
                 .permissionReRequestMessage("permissionReRequestMessage")
