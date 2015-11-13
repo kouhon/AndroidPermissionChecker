@@ -1,16 +1,29 @@
 package com.komegu.AndroidPermissionCheckerDemo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.komegu.AndroidPermissionChecker.CheckParameter;
+import com.komegu.AndroidPermissionChecker.Checker;
+
 public class MainActivity extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CheckParameter cp = new CheckParameter.Builder(this, Manifest.permission.CAMERA)
+                .isPermissionRequest(true)
+                .permissionRequestCode(0)
+                .permissionRequestNoticeMessage("test message")
+                .permissionRequestNoticeTitle("test title")
+                .build();
+        Checker.checkPermission(cp);
     }
 
     @Override
@@ -33,5 +46,15 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode,
+            String[] permissions,
+            int[] grantResults)
+    {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
